@@ -1,4 +1,4 @@
 # Layer Microservice
 
-[![Build Status](https://travis-ci.org/resource-watch/layer.svg?branch=master)](https://travis-ci.org/resource-watch/layer)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/31c04ea387e28ef9ada7/test_coverage)](https://codeclimate.com/github/resource-watch/layer/test_coverage)
+[![Build Status](https://travis-ci.org/Skydipper/layer.svg?branch=master)](https://travis-ci.org/Skydipper/layer)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f92a5ae6a9cda88da6b5/test_coverage)](https://codeclimate.com/github/Skydipper/layer/test_coverage)
