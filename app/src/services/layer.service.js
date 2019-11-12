@@ -159,15 +159,6 @@ class LayerService {
             staticImageConfig: layer.staticImageConfig
         }).save();
         logger.debug('[LayerService]: Creating in graph');
-        if (stage !== 'staging') {
-            try {
-                await GraphService.createLayer(dataset, newLayer._id);
-            } catch (err) {
-                logger.error('Error creating widget in graph. Removing widget');
-                await newLayer.remove();
-                throw new Error(err);
-            }
-        }
         return newLayer;
     }
 
@@ -237,13 +228,6 @@ class LayerService {
         logger.info(`[DBACCESS-DELETE]: layer.id: ${id}`);
         const deletedLayer = await currentLayer.remove();
         logger.debug('[LayerService]: Deleting in graph');
-        if (stage !== 'staging') {
-            try {
-                await GraphService.deleteLayer(id);
-            } catch (err) {
-                logger.error('Error removing layer of the graph', err);
-            }
-        }
         try {
             await LayerService.expireCacheTiles(id, currentLayer._id);
         } catch (err) {
