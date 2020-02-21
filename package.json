@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_PATH=app/src node $NODE_DEBUG_OPTION ./node_modules/.bin/grunt --gruntfile app/Gruntfile.js e2eTest",
+    "dev": "export $(cat ./dev.env.sample | xargs) && NODE_PATH=app/src node $NODE_DEBUG_OPTION app/index.js",
     "start": "NODE_PATH=app/src node $NODE_DEBUG_OPTION app/index.js",
     "coverage": "NODE_PATH=app/src node $NODE_DEBUG_OPTION ./node_modules/.bin/grunt --gruntfile app/Gruntfile.js nyc"
   },

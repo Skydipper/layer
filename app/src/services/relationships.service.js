@@ -27,7 +27,7 @@ class RelationshipsService {
                         version: false
                     });
                     layers[i].user = {
-                        name: user.data[0].name,
+                        name: user.data[0].name || '',
                         email: user.data[0].email
                     };
                     logger.info('Layers', layers);
