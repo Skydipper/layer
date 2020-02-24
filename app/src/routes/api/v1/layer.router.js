@@ -261,7 +261,7 @@ const datasetValidationMiddleware = async (ctx, next) => {
     }
     // END REMOVE
     try {
-        ctx.state.dataset = await DatasetService.checkDataset(ctx);
+        ctx.state.dataset = await DatasetService.checkDataset(ctx, LayerValidator.getUser(ctx));
     } catch (err) {
         ctx.throw(err.statusCode, 'Dataset not found');
     }

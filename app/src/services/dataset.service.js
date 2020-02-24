@@ -2,15 +2,14 @@ const logger = require('logger');
 const ctRegisterMicroservice = require('sd-ct-register-microservice-node');
 
 class DatasetService {
-
-    static async checkDataset(ctx) {
+    static async checkDataset(ctx, user) {
         if (ctx.params.dataset || ctx.request.body.dataset) {
             const datasetId = ctx.params.dataset || ctx.request.body.dataset;
             logger.info(`[DatasetService] Validating presence of dataset with id: ${datasetId}`);
 
             try {
                 const dataset = await ctRegisterMicroservice.requestToMicroservice({
-                    uri: `/dataset/${datasetId}`,
+                    uri: `/dataset/${datasetId}?loggedUser=${user}`,
                     method: 'GET',
                     json: true
                 });
