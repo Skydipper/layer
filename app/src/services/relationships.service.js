@@ -27,6 +27,7 @@ class RelationshipsService {
                         version: false
                     });
                     layers[i].user = {
+                        id: user.data[0]._id,
                         name: user.data[0].name || '',
                         email: user.data[0].email
                     };
