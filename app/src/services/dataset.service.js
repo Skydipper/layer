@@ -16,6 +16,7 @@ class DatasetService {
                 console.log("dataset-----", dataset);
                 return dataset.data;
             } catch (err) {
+                console.log("err----", err);
                 logger.info(`[DatasetService] There was an error obtaining the dataset: ${err}`);
                 throw err;
             }
