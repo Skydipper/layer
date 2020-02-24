@@ -114,7 +114,7 @@ class LayerService {
         return filteredSort;
     }
 
-    static async get(id, includes) {
+    static async get(id, includes, headers) {
         logger.debug(`[LayerService]: Getting layer with id:  ${id}`);
         logger.info(`[DBACCESS-FIND]: layer.id: ${id}`);
         const layer = await Layer.findById(id).exec() || await Layer.findOne({
@@ -126,7 +126,7 @@ class LayerService {
         }
         if (includes && includes.length > 0) {
             logger.debug('Finding relationships');
-            const layers = await RelationshipsService.getRelationships([layer], includes);
+            const layers = await RelationshipsService.getRelationships([layer], includes, headers);
             return layers[0];
         }
         return layer;
@@ -289,7 +289,7 @@ class LayerService {
         });
     }
 
-    static async getAll(query = {}, dataset = null) {
+    static async getAll(query = {}, dataset = null, headers) {
         logger.debug(`[LayerService]: Getting all layers`);
         const sort = query.sort || '';
         const page = query['page[number]'] ? parseInt(query['page[number]'], 10) : 1;
@@ -311,7 +311,7 @@ class LayerService {
         pages = Object.assign({}, pages);
         if (includes.length > 0) {
             logger.debug('Finding relationships');
-            pages.docs = await RelationshipsService.getRelationships(pages.docs, includes);
+            pages.docs = await RelationshipsService.getRelationships(pages.docs, includes, headers);
         }
         return pages;
     }

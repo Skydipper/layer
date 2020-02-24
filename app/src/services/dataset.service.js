@@ -8,7 +8,6 @@ class DatasetService {
             logger.info(`[DatasetService] Validating presence of dataset with id: ${datasetId}`);
 
             try {
-                console.log("test----", ctx.headers);
                 const dataset = await ctRegisterMicroservice.requestToMicroservice({
                     uri: `/dataset/${datasetId}`,
                     headers: {
@@ -18,10 +17,8 @@ class DatasetService {
                     method: 'GET',
                     json: true
                 });
-                console.log("dataset---", dataset);
                 return dataset.data;
             } catch (err) {
-                console.log("err000", err);
                 logger.info(`[DatasetService] There was an error obtaining the dataset: ${err}`);
                 throw err;
             }

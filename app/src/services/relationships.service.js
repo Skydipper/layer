@@ -4,13 +4,17 @@ const ctRegisterMicroservice = require('sd-ct-register-microservice-node');
 
 class RelationshipsService {
 
-    static async getRelationships(layers, includes) {
+    static async getRelationships(layers, includes, headers = {}) {
         logger.info(`Getting relationships of layers: ${layers}`);
         for (let i = 0; i < layers.length; i++) {
             try {
                 if (includes.indexOf('vocabulary') > -1) {
                     const vocabularies = await ctRegisterMicroservice.requestToMicroservice({
                         uri: `/dataset/${layers[i].dataset}/layer/${layers[i]._id}/vocabulary`,
+                        headers: {
+                            authentication: headers.authentication,
+                            authorizationms: headers.authorizationms,
+                        },
                         method: 'GET',
                         json: true
                     });
@@ -21,6 +25,10 @@ class RelationshipsService {
                         uri: `/auth/user/find-by-ids`,
                         method: 'POST',
                         json: true,
+                        headers: {
+                            authentication: ctx.headers.authentication,
+                            authorizationms: ctx.headers.authorizationms,
+                        },
                         body: {
                             ids: [layers[i].userId]
                         },

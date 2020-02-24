@@ -35,7 +35,7 @@ class LayerRouter {
         const query = ctx.query;
         delete query.loggedUser;
         try {
-            const layer = await LayerService.get(id, includes);
+            const layer = await LayerService.get(id, includes, ctx.headers);
             ctx.body = LayerSerializer.serialize(layer);
             const cache = [id, layer.slug];
             if (includes) {
@@ -173,7 +173,7 @@ class LayerRouter {
         const serializedQuery = serializeObjToQuery(clonedQuery) ? `?${serializeObjToQuery(clonedQuery)}&` : '?';
         const apiVersion = ctx.mountPath.split('/')[ctx.mountPath.split('/').length - 1];
         const link = `${ctx.request.protocol}://${ctx.request.host}/${apiVersion}${ctx.request.path}${serializedQuery}`;
-        const layers = await LayerService.getAll(query, dataset);
+        const layers = await LayerService.getAll(query, dataset, ctx.headers);
         ctx.body = LayerSerializer.serialize(layers, link);
 
         const includes = ctx.query.includes ? ctx.query.includes.split(',').map(elem => elem.trim()) : [];
