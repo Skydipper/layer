@@ -11,7 +11,10 @@ class DatasetService {
                 console.log("test----", ctx.headers);
                 const dataset = await ctRegisterMicroservice.requestToMicroservice({
                     uri: `/dataset/${datasetId}`,
-                    headers: { authentication: ctx.headers.authentication },
+                    headers: {
+                        authentication: ctx.headers.authentication,
+                        authorizationms: ctx.headers.authorizationms,
+                    },
                     method: 'GET',
                     json: true
                 });
