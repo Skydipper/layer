@@ -13,6 +13,7 @@ class DatasetService {
                     method: 'GET',
                     json: true
                 });
+                console.log("dataset-----", dataset);
                 return dataset.data;
             } catch (err) {
                 logger.info(`[DatasetService] There was an error obtaining the dataset: ${err}`);
