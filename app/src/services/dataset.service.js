@@ -2,21 +2,20 @@ const logger = require('logger');
 const ctRegisterMicroservice = require('sd-ct-register-microservice-node');
 
 class DatasetService {
-    static async checkDataset(ctx, user) {
+    static async checkDataset(ctx) {
         if (ctx.params.dataset || ctx.request.body.dataset) {
             const datasetId = ctx.params.dataset || ctx.request.body.dataset;
             logger.info(`[DatasetService] Validating presence of dataset with id: ${datasetId}`);
 
             try {
                 const dataset = await ctRegisterMicroservice.requestToMicroservice({
-                    uri: `/dataset/${datasetId}?loggedUser=${user}`,
+                    uri: `/dataset/${datasetId}`,
+                    headers: { authentication: ctx.headers.authentication },
                     method: 'GET',
                     json: true
                 });
-                console.log("dataset-----", dataset);
                 return dataset.data;
             } catch (err) {
-                console.log("err----", err);
                 logger.info(`[DatasetService] There was an error obtaining the dataset: ${err}`);
                 throw err;
             }
