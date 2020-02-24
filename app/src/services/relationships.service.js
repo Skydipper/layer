@@ -26,8 +26,8 @@ class RelationshipsService {
                         method: 'POST',
                         json: true,
                         headers: {
-                            authentication: ctx.headers.authentication,
-                            authorizationms: ctx.headers.authorizationms,
+                            authentication: headers.authentication,
+                            authorizationms: headers.authorizationms,
                         },
                         body: {
                             ids: [layers[i].userId]
