@@ -55,7 +55,7 @@
     "koa-multer": "^1.0.1",
     "koa-router": "^7.0.1",
     "koa-validate": "^1.0.7",
-    "mongoose": "^4.8.5",
+    "mongoose": "^4.13.21",
     "mongoose-paginate": "^5.0.3",
     "request": "^2.88.0",
     "request-promise": "^4.1.1",
